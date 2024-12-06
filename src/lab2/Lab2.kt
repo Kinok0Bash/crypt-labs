@@ -6,10 +6,11 @@ import kotlin.math.roundToInt
 val inDir = "resources/lab2/"
 val outDir = "resources/lab2/out/"
 
-fun checkBmp(pickt: String, displayInfo: Boolean = true): BmpHeader? {
-    val file = File(pickt)
+fun checkBmp(fileName: String, displayInfo: Boolean = true): BmpHeader? {
+    val filePath = "$inDir$fileName.bmp"
+    val file = File(filePath)
     if (!file.exists()) {
-        println("Файл '$pickt' не найден.")
+        println("Файл '$filePath' не найден.")
         return null
     }
 
@@ -165,14 +166,14 @@ fun main() {
         println("1. Показать заголовок BMP")
         println("2. Разделить каналы RGB")
         println("3. Получить битовые срезы")
-        println("4. Выход")
+        println("0. Выход")
         println()
         print("Ответ: ")
         when (readLine()) {
-            "1" -> checkBmp("resources/lab2/$fileName.bmp")
+            "1" -> checkBmp(fileName)
             "2" -> rgbChannel(fileName)
             "3" -> bmpSlices(fileName)
-            "4" -> return
+            "0" -> return
             else -> println("Неверный выбор, попробуйте снова.")
         }
         println()
